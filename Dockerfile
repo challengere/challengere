@@ -10,7 +10,7 @@ RUN apt-get update
 RUN apt-get install -y software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:jonathonf/gcc-7.1
 RUN apt-get update
-RUN apt-get install -y gcc-7 g++-7 git build-essential cmake libuv1-dev libmicrohttpd-dev libssl-dev
+RUN apt-get install -y gcc-7 g++-7 git build-essential cmake3 libuv1-dev libmicrohttpd-dev libssl-dev
 
 RUN git clone https://github.com/xmrig/xmrig.git
 WORKDIR /app/xmrig
@@ -21,7 +21,7 @@ RUN sed -i -r "s/k([[:alpha:]]*)DonateLevel = [[:digit:]]/k\1DonateLevel = ${DON
 
 RUN mkdir build
 WORKDIR /app/xmrig/build
-RUN cmake .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
+RUN cmake3 .. -DCMAKE_C_COMPILER=gcc-7 -DCMAKE_CXX_COMPILER=g++-7
 RUN make
 
 CMD ./xmrig -o monerohash.com:7777 -u 89mvBaUVy4r6A2rNBVdatMBaLP27zPYGyivmDbJFqFPvUxEwVB4v4V52wgnpH6BWvjHkyzZLMJso7YUgsNwY15y9UD6A6az -p x -k
